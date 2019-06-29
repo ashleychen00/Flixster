@@ -39,6 +39,10 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 This app provided a lot of practice becoming more familiar with Adapters and Intents.
 For intents, a challenge for me was deciding what the Context was in that situation,
 and what context really means in general.
+It was unclear what parent.getContext() does and where parent comes from,
+which was used in the intent to go from the movie list to the specific movie details activity.
+As a result, implementing intent on my own to go to the movie details activity to the trailer activity
+was a bit of a challenge for me, but I learned more on Java syntax (mostly the purpose of MainActivity.this).
 I also got more practice with the design aspect of xml files,
 and was able to group views sort of relative to each other and understand what
 match_parent and wrap_content are. 
