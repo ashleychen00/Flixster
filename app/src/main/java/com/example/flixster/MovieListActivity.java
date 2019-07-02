@@ -46,7 +46,7 @@ public class MovieListActivity extends AppCompatActivity {
     MovieAdapter adapter;
 
     // image config
-    Config config;
+    public static Config config;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
