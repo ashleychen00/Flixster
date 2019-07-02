@@ -1,6 +1,7 @@
 package com.example.flixster;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.flixster.models.Config;
 import com.example.flixster.models.Movie;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -42,7 +45,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     // create *viewholder* class as static *inner* class
         // viewholder is each individual list item
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    // removed static for parcel
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         // track object views
         ImageView ivPosterImage;
@@ -58,6 +62,20 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvOverview = itemView.findViewById(R.id.tvOverview);
             ivBackdropImage = itemView.findViewById(R.id.ivBackdropImage);
+            itemView.setOnClickListener(this); // sets a listener so that when activated, goes to onclick function
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            if (position != RecyclerView.NO_POSITION) { // no_position = -1, but better not to hard code
+                // means position is valid
+                Movie movie = movies.get(position);
+                Intent intent = new Intent(context, MovieDetailsActivity.class);
+                intent.putExtra(Movie.class.getSimpleName(), Parcels.wrap(movie));
+                context.startActivity(intent);
+
+            }
         }
     }
 
